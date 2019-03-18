@@ -17,4 +17,16 @@ def permutation1?(str1, str2)
   end
   true 
 end
-p permutation1?('hello', 'oellh')
+
+def permutation2(str1, str2)
+  return false if str1.length != str2.length
+
+  array = Array.new(128){0}
+  str1.each_char { |c| array[c.ord] += 1 }
+  str2.each_char do |c| 
+    array[c.ord] -= 1 
+    return false if array[c.ord] < 0
+  end
+  true
+end
+p permutation2('lheplo', 'oellph')
