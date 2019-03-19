@@ -27,4 +27,21 @@ def productify(arr)
   result
 end
 
-p productify([2,3,4,5])
+def prodcutify1(arr)
+  result = Array.new(arr.length){1}
+  lower = 1
+  upper = 1
+
+  1.upto(arr.length-1) do |i|
+    lower = lower * arr[i-1]
+    result[i] = lower * result[-1]
+  end
+
+  (arr.length-2).downto(0) do |i|
+    upper = upper * arr[i + 1]
+    result[i] = result[i] * upper
+  end
+  result
+end
+
+p prodcutify1([2,3,4,5])
