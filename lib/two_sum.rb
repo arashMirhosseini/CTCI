@@ -9,6 +9,7 @@
 # Because nums[1] + nums[2] = 2 + 7 = 9,
 # return [1, 2].
 
+# using hash: O(n)
 def two_sum(nums, target)
   seen = Hash.new
 
