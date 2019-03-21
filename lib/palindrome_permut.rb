@@ -9,15 +9,22 @@ def permutationOfPalindrome?(str)
   hsh = Hash.new(0)
   str = str.split(' ').join
   len = str.size
+  count = 0
   str.each_char do |c|
     hsh[c.downcase] += 1
+    if hsh[c.downcase] % 2 != 0
+      count += 1
+    else
+      count -= 1
+    end
   end
-  count = 0
-  hsh.each do |k, v|
-      count += 1 if v % 2 != 0
-  end
-  return false if count > 1
-  true
+  return count <= 1
+  # count = 0
+  # hsh.each do |k, v|
+  #     count += 1 if v % 2 != 0
+  # end
+  # return false if count > 1
+  # true
 end
 
-p permutationOfPalindrome?("aacccTTccaaaPP")
+p permutationOfPalindrome?("aaccTTTccaaPPP")
