@@ -24,4 +24,4 @@ def one_way(str1, str2)
   return count <= 2
 end
 
-p one_way('ppale', 'pale')
+p one_way('ppaleee', 'qpaweee')
