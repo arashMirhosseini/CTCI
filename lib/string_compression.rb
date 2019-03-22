@@ -15,12 +15,14 @@ def string_compression(str)
     if str[i] == str[i+1] 
       count += 1
     else
-      str_result << (str[i] + count.to_s)
+      str_result << str[i]
+      str_result << count.to_s
       count = 1
     end
     i += 1
   end
-  str_result << (str[i] + count.to_s)
+  str_result << str[i]
+  str_result << count.to_s
   (str.size <= str_result.size) ? (return str) : (return str_result.join)
 end
 
