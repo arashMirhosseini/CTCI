@@ -21,7 +21,7 @@ def rotate_matrix(matrix)
         end
     end
   nil
-end
+end      
 
 matrix = [[1,2,3],[4,5,6],[7,8,9]]
 rotate_matrix(matrix)
