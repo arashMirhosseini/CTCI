@@ -6,6 +6,8 @@
 
 # in Ruby, we can use include? method as isString method
 
+# both solutions have time complexity: O(n)
+
 def string_rotation?(s1, s2)
   return false unless s1.size == s2.size
 
@@ -24,4 +26,11 @@ def string_rotation?(s1, s2)
   true
 end
 
-p string_rotation?('waterbottle', 'ottlewaterb')
+def string_rotation1?(s1, s2)
+  return false unless s1.size == s2.size
+
+  s = s1 + s1
+  s.include? s2
+end
+
+p string_rotation1?('waterbottle', 'ottlewaterb')
