@@ -23,8 +23,27 @@ def kth_to_the_last(linkedlist, k)
   node
 end
 
+def kth_to_the_last1(linkedlist, k)
+  if k == 0
+    node = linkedlist.head.next
+    tail = linkedlist.tail
+    while node.next != tail
+      node = node.next
+    end
+    return node
+  end
+
+  node_next = kth_to_the_last1(linkedlist, k-1)
+  node = linkedlist.head.next
+  tail = linkedlist.tail
+  while node.next != node_next
+    node = node.next
+  end
+  return node
+end
+
 linkedlist = LinkedList.new
-linkedlist.append(3)
+linkedlist.append(8)
 linkedlist.append(1)
 linkedlist.append(2)
 linkedlist.append(5)
@@ -35,6 +54,6 @@ linkedlist.append(3)
 
 puts linkedlist.to_s
 
-n = kth_to_the_last(linkedlist, 4)
+n = kth_to_the_last1(linkedlist, 4)
 puts n
 
