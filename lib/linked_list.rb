@@ -1,4 +1,6 @@
 class LinkedList
+
+  attr_accessor :head, :tail
   
   def initialize
     @head = Node.new
@@ -14,15 +16,30 @@ class LinkedList
     node.prev.next = node
     self.tail.prev = node
   end
+
+  def to_s
+    res = ""
+    n = self.head.next
+    while n != tail
+
+      res += (n.to_s + ' => ')
+      n = n.next
+    end
+    res
+  end
 end
 
 class Node
   
-  attr_accessor :data, :next
+  attr_accessor :data, :next, :prev
 
-  def initilize(data = nil)
+  def initialize(data = nil)
     @data = data
     @next = nil
     @prev = nil
+  end
+
+  def to_s
+    self.data.to_s
   end
 end
