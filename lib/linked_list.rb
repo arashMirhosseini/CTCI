@@ -17,6 +17,15 @@ class LinkedList
     self.tail.prev = node
   end
 
+  def remove(node)
+    n1 = node.prev
+    n2 = node.next
+    n1.next = node.next
+    n2.prev = node.prev
+    node.next = nil
+    node.prev = nil
+  end
+
   def to_s
     res = ""
     n = self.head.next
