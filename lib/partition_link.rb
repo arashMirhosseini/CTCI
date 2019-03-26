@@ -40,6 +40,8 @@ def partition(lk, x)
   result
 end
 
+# O(n) time complexity 
+# O(1) space complexity
 def partition1(lk, x)
   p1 = lk
   p2 = p1.next
