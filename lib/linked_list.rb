@@ -76,8 +76,9 @@ class NodeList
     node = self
     res = ''
     while node.next != nil
-      node = node.next
+     
       res += node.data.to_s + ' => '
+      node = node.next
     end
     res
   end

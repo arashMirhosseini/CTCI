@@ -42,7 +42,9 @@ def kth_to_the_last1(linkedlist, k)
   return node
 end
 
-# this methos takes the head node of linkedlist
+# this method takes the head node of linkedlist
+# O(n) time
+# O(1) space
 def kth_to_the_last2(head_node, k)
   
   p1 = head_node
