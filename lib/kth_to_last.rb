@@ -42,18 +42,50 @@ def kth_to_the_last1(linkedlist, k)
   return node
 end
 
-linkedlist = LinkedList.new
-linkedlist.append(8)
-linkedlist.append(1)
-linkedlist.append(2)
-linkedlist.append(5)
-linkedlist.append(1)
-linkedlist.append(6)
-linkedlist.append(3)
-linkedlist.append(3)
+# this methos takes the head node of linkedlist
+def kth_to_the_last2(head_node, k)
+  
+  p1 = head_node
+  p2 = p1
+  i = 0 
+  while i < k && p2.next != nil
+    p2 = p2.next
+    i += 1
+  end
 
-puts linkedlist.to_s
+  while p2.next != nil
+    p1 = p1.next
+    p2 = p2.next
+  end
 
-n = kth_to_the_last1(linkedlist, 4)
+  p1.data
+end
+
+# linkedlist = LinkedList.new
+# linkedlist.append(8)
+# linkedlist.append(1)
+# linkedlist.append(2)
+# linkedlist.append(5)
+# linkedlist.append(1)
+# linkedlist.append(6)
+# linkedlist.append(3)
+# linkedlist.append(3)
+
+# puts linkedlist.to_s
+
+# n = kth_to_the_last1(linkedlist, 4)
+# puts n
+
+linked = NodeList.new
+linked.append(8)
+linked.append(1)
+linked.append(2)
+linked.append(5)
+linked.append(1)
+linked.append(6)
+
+puts linked
+
+n = kth_to_the_last2(linked, 1)
 puts n
 

@@ -52,3 +52,33 @@ class Node
     self.data.to_s
   end
 end
+
+# singly linked list
+class NodeList
+  
+  attr_accessor :data, :next
+  
+  def initialize(data = nil)
+    @data = data
+    @next = nil
+  end
+
+  def append(data)
+    
+    node = self
+    while node.next != nil
+      node = node.next
+    end
+    node.next = NodeList.new(data)
+  end
+
+  def to_s
+    node = self
+    res = ''
+    while node.next != nil
+      node = node.next
+      res += node.data.to_s + ' => '
+    end
+    res
+  end
+end
