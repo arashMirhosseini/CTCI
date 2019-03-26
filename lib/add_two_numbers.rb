@@ -32,6 +32,8 @@ def add_two_numbers(l1, l2)
 end
 #########----------------------------------------
 
+# O(n) time complexity 
+# O(n) space complexity 
 def add_two_numbers1(l1, l2)
   
   nums1 = []
@@ -86,10 +88,9 @@ def sum_two_arrays(arr1, arr2)
   num1 + num2
 end
 
-# p sum_two_arrays_reverse([9,9,9], [9,9])
 
 
-l1 = NodeList.new(7)
+l1 = NodeList.new(0)
 l1.append(1)
 l1.append(6)
 

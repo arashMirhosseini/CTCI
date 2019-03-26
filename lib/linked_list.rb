@@ -68,7 +68,7 @@ class NodeList
   def append(data)
     
     node = self
-    while node.next != nil
+    while !node.next.nil?
       node = node.next
     end
     node.next = NodeList.new(data)
