@@ -8,10 +8,11 @@
 require_relative 'linked_list'
 
 def remove_middle(nodelist)
+  return false if nodelist.next.nil?
   nodelist.data = nodelist.next.data
   next_node = nodelist.next
   nodelist.next = next_node.next
-
+  true
 end
 
 linked = NodeList.new(3)
@@ -22,6 +23,6 @@ linked.append(12)
 
 puts linked
 
-remove_middle(linked.next.next)
+remove_middle(linked.next.next.next.next)
 
 puts linked

@@ -80,6 +80,7 @@ class NodeList
       res += node.data.to_s + ' => '
       node = node.next
     end
+    res += node.data.to_s
     res
   end
 end
