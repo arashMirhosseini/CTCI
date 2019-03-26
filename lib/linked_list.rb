@@ -1,3 +1,5 @@
+
+# doubly linked list
 class LinkedList
 
   attr_accessor :head, :tail
@@ -52,7 +54,7 @@ class Node
     self.data.to_s
   end
 end
-
+#
 # singly linked list
 class NodeList
   
@@ -75,7 +77,7 @@ class NodeList
   def to_s
     node = self
     res = ''
-    while node.next != nil
+    while !node.next.nil?
      
       res += node.data.to_s + ' => '
       node = node.next
