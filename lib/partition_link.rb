@@ -40,6 +40,27 @@ def partition(lk, x)
   result
 end
 
+def partition1(lk, x)
+  p1 = lk
+  p2 = p1.next
+
+  while !p2.nil?
+    if p1.data >= x && p2.data >= x
+      p2 = p2.next
+    elsif p1.data >= x && p2.data < x
+      temp = p2.data
+      p2.data = p1.data
+      p1.data = temp
+      p2 = p2.next
+      p1 = p1.next
+    else
+      p2 = p2.next
+      p1 = p1.next
+    end
+  end
+  lk
+end
+
 lk = NodeList.new(3)
 lk.append(5)
 lk.append(8)
@@ -49,4 +70,4 @@ lk.append(2)
 lk.append(1)
 
 puts lk
-puts partition(lk, 5)
+puts partition1(lk, 5)
