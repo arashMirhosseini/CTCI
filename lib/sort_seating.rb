@@ -56,8 +56,14 @@ class LinkedNode
   def to_s
     node = self 
     res = ''
-    while !node.next.nil?
-      res += node.name + ' => '
+    while !node.nil?
+      if node.name.nil?
+        name_s = 'nil' 
+      else
+        name_s = node.name
+      end
+
+      res += name_s + ' => '
       node = node.next
     end
     res
@@ -68,38 +74,42 @@ class JaneList
 
   attr_accessor :names
   
-  def initialize(names)
-    @names = names
+  def initialize(name)
+    @names = LinkedNode.new(name)
   end
 
   def add(name)
-    previous = nil
-    root = names
-   
-   
-    if root.nil?
-      @names.append(name)
-    end
-    flag = 0 
-    new_node = LinkedNode.new(name)
 
-    while !root.nil?
-      flag = root.name <=> new_node.name
+    return names.append(name) if names.nil? 
+    
+    previous = nil
+    current = names
+    new_name = LinkedNode.new(name)
+ 
+    while current
       
-      if flag == 1
-        new_node.next = root
-        new_node.prev = previous
-        root.prev = new_node
-        previous.next = new_node
-        p new_node.next.name
+      if previous.nil? && current.name >= name
+        new_name.next = current
+        current.prev = new_name
         break
-      end
-     
       
-      previous = root
-      root = root.next
-      # p previous.name
+
+      elsif name >= previous.name && (current.nil? || name <= current.name)
+
+        new_name.next = current
+        new_name.prev = previous
+        previous.next = new_name
+        current.prev = new_name
+        break
+        
+      else
+        previous = current
+        current = current.next 
+      end
+      
     end
+
+    names
     
   end
 
@@ -113,7 +123,12 @@ class JaneList
 
 end
 
-names = LinkedNode.new('Jane')
-list = JaneList.new(names)
-list.add('bob')
-puts names.to_s
+jane = JaneList.new('Jane')
+jane.add('Bob')
+# names = jane.add('Jane')
+puts jane.names.prev.to_s
+
+# lk = LinkedNode.new('Jane')
+# lk.append('Bob')
+# puts lk
+
