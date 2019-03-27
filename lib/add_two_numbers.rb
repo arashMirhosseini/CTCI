@@ -101,6 +101,29 @@ def add_two_numbers2(l1, l2)
   res
 end
 
+#------------------------------------------------
+# Suppose the digits are stored in forward order. Repeat the above problem. 
+# EXAMPLE
+# Input:(6 -> 1 -> 7) + (2 -> 9 -> 5).That is,617 + 295. 
+# Output:9 -> 1 -> 2. 
+# That is 912.
+
+def add_two_numbers_forward(l1, l2)
+  
+end
+
+# ----------- helper methods ----
+# length of linked list 
+def length(lk)
+  count = 0
+  node = lk
+  while !node.nil?
+    count += 1
+    node = node.next 
+  end
+  count 
+end
+
 
 # O(n) time
 def sum_two_arrays_reverse(arr1, arr2)
@@ -129,17 +152,6 @@ def sum_two_arrays(arr1, arr2)
   num1 = arr1.join('').to_i
   num2 = arr2.join('').to_i
   num1 + num2
-end
-
-#------------------------------------------------
-# Suppose the digits are stored in forward order. Repeat the above problem. 
-# EXAMPLE
-# Input:(6 -> 1 -> 7) + (2 -> 9 -> 5).That is,617 + 295. 
-# Output:9 -> 1 -> 2. 
-# That is 912.
-
-def add_two_numbers_forward(l1, l2)
-  
 end
 
 
