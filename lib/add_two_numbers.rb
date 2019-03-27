@@ -172,7 +172,8 @@ l2.append(9)
 l2.append(2)
 
 puts l1
-puts l2
+# puts l2
 
 # p add_two_numbers(l1, l2)
-puts add_two_numbers2(l1, l2)
+# puts add_two_numbers2(l1, l2)
+print_nodes(l1)

@@ -86,3 +86,34 @@ class NodeList
     res
   end
 end
+
+#-------------- Helper methods for linked lists -----
+# ------ Recursion in singly linked list--------
+
+
+def length_recursive(lk)
+  if lk.nil?
+    return 0
+  else
+    return 1 + length_recursive(lk.next)
+  end
+end
+
+def sum_values(lk)
+  if lk.nil
+    return 0
+  else
+    return lk.data + sum_values(lk.next)
+  end
+end
+
+def print_nodes(lk)
+  
+  if lk.nil? 
+    puts
+  else
+    print "#{lk.data}" 
+    print " => "
+    print "#{print_nodes(lk.next)}"
+  end
+end

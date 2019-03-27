@@ -24,6 +24,7 @@ def palindrom_array?(arr)
   true
 end
 
+
 lk = NodeList.new('m')
 lk.append('a')
 lk.append('d')
