@@ -109,8 +109,14 @@ end
 # That is 912.
 
 def add_two_numbers_forward(l1, l2)
-  size1 = length(l1)  
-  size2 = length(l2)
+  # size1 = length(l1)  
+  # size2 = length(l2)
+  # if l1.nil? && l2.nil?
+  #   return 
+  # end
+  # sum = l1.data + l2.data + carry 
+  # add_two_numbers_forward(l1.next, l2.next)
+
   
 end
 
