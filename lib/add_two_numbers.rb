@@ -109,6 +109,8 @@ end
 # That is 912.
 
 def add_two_numbers_forward(l1, l2)
+  size1 = length(l1)  
+  size2 = length(l2)
   
 end
 
