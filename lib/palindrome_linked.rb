@@ -11,6 +11,20 @@ def palindrom?(lk)
   palindrom_array?(array)
 end
 
+# iterative approach
+def reverse_lk(lk)
+  prv = nil
+  curr = lk
+  nxt = nil
+  while curr
+    nxt = curr.next
+    curr.next = prv
+    prv = curr
+    curr = nxt
+  end
+  lk = prv
+end
+
 def palindrom_array?(arr)
   
   i = 0
@@ -26,10 +40,14 @@ end
 
 
 lk = NodeList.new('m')
-lk.append('a')
+lk.append('t')
 lk.append('d')
 lk.append('a')
-lk.append('m')
-lk.append('m')
+lk.append('s')
+# lk.append('m')
 
-p palindrom?(lk)
+# p palindrom?(lk)
+
+l = reverse_lk(lk)
+puts l
+

@@ -54,15 +54,16 @@ class Node
     self.data.to_s
   end
 end
-#
+# ----------------------------------------
 # singly linked list
 class NodeList
   
   attr_accessor :data, :next
   
-  def initialize(data = nil)
+  def initialize(data = nil, lk = nil)
     @data = data
-    @next = nil
+    @next = lk
+
   end
 
   def append(data)
@@ -91,6 +92,8 @@ end
 # ------ Recursion in singly linked list--------
 
 
+# Accessors :
+
 def length_recursive(lk)
   if lk.nil?
     return 0
@@ -108,7 +111,6 @@ def sum_values(lk)
 end
 
 def print_nodes(lk)
-  
   if lk.nil? 
     puts
   else
@@ -117,3 +119,48 @@ def print_nodes(lk)
     print "#{print_nodes(lk.next)}"
   end
 end
+
+def reverse_print(lk)
+  
+  if lk.nil?
+    return 
+  else
+    reverse_print(lk.next) 
+    print ' => '
+    print "#{lk.data}"
+  end
+end
+
+def search(lk, val)
+  if lk.nil? || lk.data == val
+    return lk
+  else
+    search(lk.next, val)
+  end
+end
+
+def copy(lk)
+  if lk.nil?
+    return nil
+  else
+    return NodeList.new(lk.data, copy(lk.next))
+  end
+end
+# -------------------
+# Mutators:
+
+def insert_rear(lk, val)
+  
+end
+
+# l1 = NodeList.new(7)
+# l1.append(1)
+# l1.append(6)
+# l1.append(9)
+
+# reverse_print(l1)
+# puts
+# # p search(l1, 6)
+# n = copy(l1)
+
+
