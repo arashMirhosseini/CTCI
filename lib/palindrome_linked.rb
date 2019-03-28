@@ -11,7 +11,24 @@ def palindrom?(lk)
   palindrom_array?(array)
 end
 
+def is_palindrom?(l)
+  l_rev = reverse_lk(l)
+  
+  node1 = l
+  node2 = l_rev
+  while node1
+    return false if node1.data != node2.data
+
+    node1 = node1.next
+    node2 = node2.next
+  end
+  true
+
+end
+
 # iterative approach
+# O(n) time
+# O(1) space
 def reverse_lk(lk)
   prv = nil
   curr = lk
@@ -23,6 +40,20 @@ def reverse_lk(lk)
     curr = nxt
   end
   lk = prv
+end
+
+# recursive approach 
+def reverse_lk_recur(lk)
+ 
+  if lk.next.nil?
+    return nil
+  else
+    reverse_lk_recur(lk.next)
+    lk.next.next = lk
+    lk.next = nil
+    
+  end
+
 end
 
 def palindrom_array?(arr)
@@ -40,14 +71,15 @@ end
 
 
 lk = NodeList.new('m')
-lk.append('t')
+lk.append('a')
 lk.append('d')
 lk.append('a')
-lk.append('s')
+lk.append('m')
 # lk.append('m')
 
 # p palindrom?(lk)
 
-l = reverse_lk(lk)
-puts l
+# l = reverse_lk_recur(lk)
+# puts l
 
+p is_palindrom?(lk)
