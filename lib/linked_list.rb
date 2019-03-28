@@ -75,6 +75,29 @@ class NodeList
     node.next = NodeList.new(data)
   end
 
+  def append_node(new_node)
+    node = self
+
+    while node.next
+      node = node.next
+    end
+
+    node.next = new_node
+    
+  end
+
+  def append_link(lk)
+    self.last_node.next = lk
+  end
+
+  def last_node
+    node = self
+    while node.next
+      node = node.next
+    end
+    node
+  end
+
   def to_s
     node = self
     res = ''
