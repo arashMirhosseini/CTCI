@@ -91,4 +91,38 @@ def my_atoi(str)
   
 end
 
-p my_atoi('+1')
+# p my_atoi('+1')
+
+def str_str(haystack, needle)
+  n = haystack.size
+  m = needle.size
+  return 0 if needle.empty?
+  return -1 if m > n
+  
+  i = 0
+  j = 0
+  while i < n-m+1
+    curr = i
+    j = 0
+    p "------------"
+    while j < m
+      break if haystack[i+j] != needle[j]
+      # p "i: #{i}"
+      # p "j: #{j}"
+      j += 1
+    end
+    p "-------------"
+    # p "j: #{j}"
+    # p "curr: #{curr}"
+    # p m-1
+    # p j == m - 1
+    if j == m
+      return curr 
+    end
+    
+    i += 1
+  end
+  -1
+end
+
+p str_str('mississippi', 'issip')
