@@ -71,27 +71,36 @@ end
 # p count_say(6)
 
 def longest_common_prefix(strs)
-  return "" if strs.empty?
+  return "" if strs.size < 2
   hash = Hash.new(0)
   min = 1.0/0.0
   n = strs.size
+  res = ""
   strs.each { |st| min = st.size if st.size < min }
-  
+  return "" if min < 1
+
   for i in 0...min do 
     
     strs.each do |st| 
       hash[st[i]] += 1
       
     end
-    break if hash[strs[0][i]] != n
+    p hash[strs[0][i]]
+    if hash[strs[0][i]] == n
+      res += strs[0][i]
+    else
+      break
+    end
   end
+  # puts res
   puts "i: #{i}, min: #{min}"
-  if i != min-1
-    return strs[0][0...i]
-  else
-    return strs[0][0...min]
-  end
+  # if i == min-1 
+  #   return strs[0][0..i]
+  # else
+  #   return strs[0][0...i]
+  # end
   
+  return res
 end
 
-p longest_common_prefix(['aa', 'ta'])
+p longest_common_prefix(['aa', 'aa'])
