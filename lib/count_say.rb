@@ -68,4 +68,30 @@ def count_say(n)
 end
 
 # p count_and_say_num(1211)
-p count_say(6)
+# p count_say(6)
+
+def longest_common_prefix(strs)
+  return "" if strs.empty?
+  hash = Hash.new(0)
+  min = 1.0/0.0
+  n = strs.size
+  strs.each { |st| min = st.size if st.size < min }
+  
+  for i in 0...min do 
+    
+    strs.each do |st| 
+      hash[st[i]] += 1
+      
+    end
+    break if hash[strs[0][i]] != n
+  end
+  puts "i: #{i}, min: #{min}"
+  if i != min-1
+    return strs[0][0...i]
+  else
+    return strs[0][0...min]
+  end
+  
+end
+
+p longest_common_prefix(['aa', 'ta'])
