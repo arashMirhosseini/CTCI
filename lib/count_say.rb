@@ -71,36 +71,18 @@ end
 # p count_say(6)
 
 def longest_common_prefix(strs)
-  return "" if strs.size < 2
-  hash = Hash.new(0)
-  min = 1.0/0.0
   n = strs.size
-  res = ""
-  strs.each { |st| min = st.size if st.size < min }
-  return "" if min < 1
+  return "" if n < 1
+  prefix = strs[0]
 
-  for i in 0...min do 
-    
-    strs.each do |st| 
-      hash[st[i]] += 1
-      
-    end
-    p hash[strs[0][i]]
-    if hash[strs[0][i]] == n
-      res += strs[0][i]
-    else
-      break
+  for i in 1..n-1 do
+    while strs[i].index(prefix) != 0
+      p prefix
+      prefix = prefix[0...prefix.size-1]
+      return "" if prefix.empty?
     end
   end
-  # puts res
-  puts "i: #{i}, min: #{min}"
-  # if i == min-1 
-  #   return strs[0][0..i]
-  # else
-  #   return strs[0][0...i]
-  # end
-  
-  return res
+  prefix
 end
 
-p longest_common_prefix(['aa', 'aa'])
+p longest_common_prefix(["flower","flow","flight"])
