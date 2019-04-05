@@ -58,4 +58,14 @@ def count_and_say_num(n)
   res
 end
 
-p count_and_say_num(1211)
+def count_say(n)
+  return '1' if n==1
+  s = '1'
+  for i in 1..n-1
+    s.gsub!(/(.)\1*/) { |m| "#{m.size}#{m[0]}" }
+  end
+  s
+end
+
+# p count_and_say_num(1211)
+p count_say(6)
