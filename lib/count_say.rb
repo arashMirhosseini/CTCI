@@ -77,7 +77,7 @@ def longest_common_prefix(strs)
 
   for i in 1..n-1 do
     while strs[i].index(prefix) != 0
-      p prefix
+     
       prefix = prefix[0...prefix.size-1]
       return "" if prefix.empty?
     end

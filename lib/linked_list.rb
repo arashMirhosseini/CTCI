@@ -176,14 +176,129 @@ def insert_rear(lk, val)
   
 end
 
-# l1 = NodeList.new(7)
-# l1.append(1)
-# l1.append(6)
-# l1.append(9)
+
+
+def merge_two_lists(l1, l2)
+  return nil if l1.nil? && l2.nil?
+  return l1 if l2.nil?
+  return l2 if l1.nil?
+  res = nil
+  if l1.data <= l2.data
+    l1.next = l2
+    l2.next = merge_two_lists(l1.next, l2.next)
+    res = l1
+  else
+    l2.next = l1
+    l1.next = merge_two_lists(l1.next, l2.next)
+    res = l2
+  end
+  res
+end
+
+def merge_two_lists1(l1, l2)
+  return l1 if l2.nil?
+  return l2 if l1.nil?
+  
+  p1 = l1
+  p2 = l2
+  s = nil
+  res = nil
+  if p1.data <= p2.data
+    s = p1
+    p1 = p1.next
+    res = l1
+  else
+    s = p2
+    p2 = p2.next
+    res = l2
+  end
+  
+  while p1 && p2
+    if p1.nil? || (p2.data <= p1.data)
+      s.next = p2
+      s = p2
+      p2 = p2.next
+
+    elsif p2.nil? || (p1.data < p2.data)
+      s.next = p1
+      s = p1
+      p1 = p1.next
+   
+    end
+  end
+  if !p1.nil?
+    s.next = p1
+  elsif !p2.nil?
+    s.next = p2
+  end
+  res
+end
+
+# time complexity: O(n)
+# space complexity: O(1)
+def is_palindrome(head)
+  return true if head.nil? || head.next.nil?
+  mid = length(head)/2
+  node = head
+  mid.times { node = node.next }
+  sec_half = reverse(node)
+  node = head
+  (mid+1).times do 
+    if node.nil? || sec_half.nil?
+      reverse(sec_half)
+      puts head
+      return true 
+    elsif node.data != sec_half.data
+      return false 
+    else
+      node = node.next
+      sec_half = sec_half.next
+    end
+  
+  end
+  
+  puts 'y' if head.nil?
+  true
+end
+
+# refactor if I want to improve space complexity 
+def length(head)
+  return 0 if head.nil?
+  return 1 + length(head.next)
+end
+
+def reverse(head)
+  return head if head.nil? || head.next.nil?
+  
+  p = reverse(head.next)
+  
+  head.next.next = head
+  head.next = nil
+  p
+end
+
+l1 = NodeList.new(1)
+l1.append(2)
+l1.append(2)
+l1.append(1)
+l2 = NodeList.new(1)
+l2.append(3)
+l2.append(4)
+
+# puts l1
+# puts length(l1)
+
+# puts merge_two_lists(l1,l2)
 
 # reverse_print(l1)
-# puts
+# puts 
 # # p search(l1, 6)
 # n = copy(l1)
+# puts reverse(l1)
+# node = l1
+# puts node
+# puts node.next
+
+p is_palindrome(l1)
 
 
