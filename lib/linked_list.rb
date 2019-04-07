@@ -245,8 +245,6 @@ def is_palindrome(head)
   node = head
   (mid+1).times do 
     if node.nil? || sec_half.nil?
-      reverse(sec_half)
-      puts head
       return true 
     elsif node.data != sec_half.data
       return false 
@@ -254,10 +252,8 @@ def is_palindrome(head)
       node = node.next
       sec_half = sec_half.next
     end
-  
   end
   
-  puts 'y' if head.nil?
   true
 end
 
