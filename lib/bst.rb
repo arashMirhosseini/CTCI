@@ -1,4 +1,4 @@
-class Node
+class Bst
   attr_accessor :key, :left, :right
   
   def initialize(key)
@@ -23,7 +23,29 @@ class Node
   end
 
   def lookup(key)
+    return key if key == self.key
     
+    if key < self.key && self.left
+      self.left.lookup(key)
+    elsif key < self.key && self.right
+      self.right.lookup(key)
+    end
+    return nil
   end
 
+  def delete(key)
+    
+  end
+end
+
+# ------------- BST problems -------------
+def build123()
+  root Bst.new(2)
+  root.insert(1)
+  root.insert(2)
+end
+
+# Given a binary tree, count the number of nodes in the tree.
+def size(root)
+  
 end
