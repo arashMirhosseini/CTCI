@@ -149,5 +149,32 @@ def mirror(root)
   end
 end
 
+# For each node in a binary search tree, create a new duplicate node,
+# and insert the duplicate as the left child of the original node. 
+# The resulting tree should still be a binary search tree.
 
+def doubleTree(root)
+  return root if root.nil?
+  
+  doubleTree(root.left)
+  doubleTree(root.right)
+  visit(root)
+
+end
+
+def inorder(root)
+  return if root.nil?
+
+  inorder(root.left)
+  visit(root)
+  inorder(root.right)
+
+end
+
+def visit(node)
+  new_node = Bst.new(node.key)
+  new_node.left = node.left
+  new_node.right = node.right
+  node.left = new_node
+end
 
