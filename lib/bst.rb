@@ -105,6 +105,49 @@ def hasPathSum?(root, sum)
 
 end
 
+# Given a binary tree, print out all of its root-to-leaf paths
+def printPaths(root)
+  paths = []
+  printPathsRecur(root, paths)
+end
+
+# helper method
+# Recursive printPaths helper -- given a node, and an array containing 
+#  the path from the root node up to but not including this node, 
+#  prints out all the root-leaf paths. 
+def printPathsRecur(node, paths)
+  return if node.nil?
+
+  paths << node.key
+
+  if node.left.nil? && node.right.nil?
+    printArray(paths)
+  end
+
+  printPathsRecur(node.left, paths)
+  printPathsRecur(node.right, paths)
+end
+
+# helper method to print from an array
+def printArray(values)
+  values.each {|val| print "#{val}, "}
+  puts
+end
+
+# Change a tree so that the roles of the left and right 
+# pointers are swapped at every node.
+def mirror(root)
+  # return root if root.nil?
+
+  # root.left, root.right = root.right, root.left
+  # mirror(root.left)
+  # mirror(root.right)
+  if root
+    mirror(root.left)
+    mirror(root.right)
+    root.left, root.right = root.right, root.left
+  end
+end
 
 
 
