@@ -58,4 +58,38 @@ def maxDepth(root)
   return [maxDepth(root.left), maxDepth(root.right)].max + 1
 end
 
+# Given a non-empty binary search tree (an ordered binary tree), 
+# return the minimum data value found in that tree
+def minValue(root)
+  return root.key if root.left.nil?
+  return minValue(root.left)
+end
+
+def minValue1(root)
+  node = root
+  while node.left
+    node = node.left
+  end
+  node.key
+end
+
+# Given a binary search tree (aka an "ordered binary tree"), 
+# iterate over the nodes to print them out in increasing order.
+def printTree(root)
+  return if root.nil?
+  
+  printTree(root.left) 
+  print "#{root.key} "
+  printTree(root.right) 
+end
+
+# Given a binary tree, print out the nodes of the tree according to a bottom-up "postorder" traversal
+def printPostorder(root)
+  return if root.nil?
+  printPostorder(root.left)
+  printPostorder(root.right)
+  print "#{root.key} "
+end
+
+
 
