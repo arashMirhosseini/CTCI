@@ -1,3 +1,4 @@
+# Binary Search Tree class
 class Bst
   attr_accessor :key, :left, :right
   
@@ -11,13 +12,13 @@ class Bst
       if self.left
         self.left.insert(key)
       else
-        self.left = Node.new(key)
+        self.left = Bst.new(key)
       end
     else
       if self.right
         self.right.insert(key)
       else
-        self.right = Node.new(key)
+        self.right = Bst.new(key)
       end
     end
   end
@@ -90,6 +91,20 @@ def printPostorder(root)
   printPostorder(root.right)
   print "#{root.key} "
 end
+
+# Given a binary tree and a sum, return true if the tree has a root-to-leaf
+# path such that adding up all the values along the path equals the given sum. 
+# Return false if no such path can be found. 
+def hasPathSum?(root, sum)
+  if root.nil?
+    return sum == 0 
+  else
+    subsum = sum - root.key
+    return hasPathSum?(root.left, subsum) || hasPathSum?(root.right, subsum)
+  end
+
+end
+
 
 
 
