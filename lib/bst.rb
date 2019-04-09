@@ -182,10 +182,35 @@ end
 # structurally identical -- they are made of nodes with 
 # the same values arranged in the same way
 def sameTree?(root1, root2)
-  return false if root1.nil? || root2.nil?
+  return true if root1.nil? && root2.nil?
+  return false if (root1.nil? && root2) || (root1 && root2.nil?)
   
-  return false if root1.key != root2.key
-  return sameTree?(root1.left, root2.left) && sameTree?(root2.right, root2.right)
+  return root1.key == root2.key &&
+    sameTree?(root1.left, root2.left) && sameTree?(root2.right, root2.right)
 
+end
+
+# Suppose you are building an N node binary search tree with the values 1..N.
+# How many structurally different binary search trees are there that store those values? 
+# Write a recursive function that, given the number of distinct values, 
+# computes the number of structurally unique binary search trees that store those values. 
+# For example, countTrees(4) should return 14, since there are 14 structurally unique 
+# binary search trees that store 1, 2, 3, and 4. The base case is easy, and the recursion 
+# is short but dense. Your code should not construct any actual trees; it's just a counting problem.
+
+# Strategy: consider that each value could be the root. 
+# Recursively find the size of the left and right subtrees. 
+def countTrees(num)
+  if num <= 1
+    return 1
+  else
+    sum = 0
+    for root in 1..num-1 do 
+      left = countTrees(root - 1)
+      right = countTrees(num - root)
+      sum += left * right
+    end
+    return sum
+  end
 end
 
