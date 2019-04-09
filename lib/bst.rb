@@ -214,3 +214,49 @@ def countTrees(num)
   end
 end
 
+# Write an isBST() function that returns true if a tree is a binary search tree and false otherwise.
+def isBST?(root)
+  return true if root.nil? || (root.left.nil? && root.right.nil?)
+  
+  if root.right && root.left
+    return is_valid_bst(root.left) && is_valid_bst(root.right) && 
+      root.val > max_value(root.left) && root.val < min_value(root.right)
+  elsif root.right && root.left.nil?
+     return is_valid_bst(root.right) && root.val < min_value(root.right)
+  elsif root.right.nil? && root.left
+    return is_valid_bst(root.left) && root.val > max_value(root.left) 
+  end
+  false
+
+end
+
+def isBST1?(root)
+  return true if root.nil?
+  res = []
+  in_order(root, res)
+  res.sort == res
+end
+
+def in_order(root, res)
+  return if root.nil?
+  in_order(root.left)
+  visit(root,res)
+  in_order(roo.right)
+  
+end
+
+def visit(root, res)
+  res << root.key
+end
+
+def minValue(root)
+  return nil if root.nil?
+  return root.key if root.left.nil?
+  return minValue(root.left)
+end
+
+def maxValue(root)
+  return nil if root.nil?
+  return root.key if root.right.nil?
+  return maxValue(root.right)
+end
