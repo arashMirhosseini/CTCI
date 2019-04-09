@@ -174,7 +174,18 @@ end
 def visit(node)
   new_node = Bst.new(node.key)
   new_node.left = node.left
-  new_node.right = node.right
+  # new_node.right = node.right
   node.left = new_node
+end
+
+# Given two binary trees, return true if they are
+# structurally identical -- they are made of nodes with 
+# the same values arranged in the same way
+def sameTree?(root1, root2)
+  return false if root1.nil? || root2.nil?
+  
+  return false if root1.key != root2.key
+  return sameTree?(root1.left, root2.left) && sameTree?(root2.right, root2.right)
+
 end
 
