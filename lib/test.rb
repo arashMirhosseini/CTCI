@@ -18,8 +18,7 @@
 # Explanation: The answer is "wke", with the length of 3.
 #  Note that the answer must be a substring, "pwke" is a subsequence and not a substring. 
 
-# hash { el => index}
-# hash.each |k, v| 
+# O(n) time and space
 
 require 'set'
 def max_substring(str)
@@ -27,7 +26,6 @@ def max_substring(str)
   ar = []
   str.each_char do |c| 
     if my_set.include? c
-      p my_set
       ar << my_set.length
       my_set.clear
       my_set.add(c)
