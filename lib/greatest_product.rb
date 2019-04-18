@@ -67,14 +67,31 @@ def greates_prdouct2(arr)
   # max_third = 3
   last_prd = max_num * max_second # 8 * 9 = 72
 
-  first_prd > last_prd ? (return max_num*first_prd) : (return max_third*last_prd) 
+  max_num*first_prd > max_third*last_prd ? (return max_num*first_prd) : (return max_third*last_prd) 
   # return 72 * 3
+end
+
+def max_product(nums)
+  return nil if nums.empty?
+  
+  curr_prd = 1
+  max = -1.0/0
+  nums.each do |num|
+    
+    if (curr_prd * num) < curr_prd
+      curr_prd = num
+    else
+      curr_prd *= num
+    end
+    max = curr_prd if curr_prd > max
+  end
+  max
 end
 
 
 ar = [722,634,-504,-379,163,-613,-842,-578,750,951,-158,30,-238,-392,-487,-797,-157,-374,999,-5,-521,-879,-858,382,626,803,-347,903,-205,57,-342,186,-736,17,83,726,-960,343,-984,937,-758,-122,577,-595,-544,-559,903,-183,192,825,368,-674,57,-959,884,29,-681,-339,582,969,-95,-455,-275,205,-548,79,258,35,233,203,20,-936,878,-868,-458,-882,867,-664,-892,-687,322,844,-745,447,-909,-586,69,-88,88,445,-553,-666,130,-640,-918,-7,-420,-368,250,-786]
 # answer: 943695360
-p greates_prdouct1(ar)
+p greates_prdouct2(ar)
 
 
 
