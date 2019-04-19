@@ -85,4 +85,19 @@ def longest_common_prefix(strs)
   prefix
 end
 
-p longest_common_prefix(["flower","flow","flight"])
+def count_say1(s)
+  return '' if s.length == 0
+  i, c = [1, 1]
+  while i < s.length && s[i] == s[i-1]
+    i += 1
+    c += 1
+  end
+  first = c.to_s + s[0]
+  first + count_say1(s[i..-1])
+end
+
+
+
+# p longest_common_prefix(["flower","flow","flight"])
+
+p count_say1('111221')
