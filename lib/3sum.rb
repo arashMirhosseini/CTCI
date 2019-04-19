@@ -32,4 +32,21 @@ def three_sum(nums)
 
 end
 
-p three_sum(nums)
+# ignoring the don't output duplicate
+def three_sum_brt(nums)
+  res = []
+  nums.sort!
+  
+  for i in 0..nums.size-3 do 
+    for j in i+1..nums.size-2 do 
+      for k in j+1..nums.size-1 do 
+        if nums[i] + nums[j] + nums[k] == 0
+          res << [nums[i], nums[j], nums[k]]
+        end
+      end
+    end
+  end
+  res
+end
+
+p three_sum_brt(nums)
