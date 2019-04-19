@@ -103,8 +103,7 @@ def count_say1(s)
 end
 
 
-
 # p longest_common_prefix(["flower","flow","flight"])
 
 # p count_say1('111221')
-p count_and_say11(1)
+p count_and_say11(4)
