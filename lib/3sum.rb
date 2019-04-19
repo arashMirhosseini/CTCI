@@ -59,7 +59,7 @@ def three_sum(nums)
   nums.sort!
   res = []
   for i in 0..nums.size-3
-    next if i > 1 && nums[i] == nums[i-1]
+    next if i > 0 && nums[i] == nums[i-1]
     left = i + 1
     right = nums.size - 1
     target = - nums[i]
@@ -83,6 +83,3 @@ def three_sum(nums)
   res
 end
 
-nums = [-1,0,1,0]
-
-p three_sum(nums)
