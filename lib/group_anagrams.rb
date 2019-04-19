@@ -1,3 +1,6 @@
+
+# time O(n^3)
+# space O(n)
 def group_anagrams(strs)
   groups = []
   return res if strs.empty?
@@ -20,6 +23,8 @@ def group_anagrams(strs)
   groups
 end
 
+# time: O(n)
+# space: O(n)
 def is_anagram?(str1, str2)
   return false if str1.length != str2.length
   hash = Hash.new(0)
@@ -30,6 +35,6 @@ def is_anagram?(str1, str2)
   end
   true
 end
-strs = ['', '']
-# strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+# strs = ['', '']
+strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
 p group_anagrams(strs)
