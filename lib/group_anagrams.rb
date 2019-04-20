@@ -1,7 +1,7 @@
 
 # time O(n^3)
 # space O(n)
-def group_anagrams(strs)
+def group_anagrams_brt(strs)
   groups = []
   return res if strs.empty?
   for i in 0...strs.size do 
@@ -35,6 +35,27 @@ def is_anagram?(str1, str2)
   end
   true
 end
+
+
+def group_anagrams(strs)
+  hash = {}
+  
+  strs.each do |str|
+    str_sorted = str.chars.sort.join
+    if hash.include? (str_sorted)
+      hash[str_sorted] << str
+    else
+      hash[str_sorted] = [str]
+    end
+  end
+  p hash
+  hash.values
+end
+
+
+
+
+
 # strs = ['', '']
 strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
 p group_anagrams(strs)
