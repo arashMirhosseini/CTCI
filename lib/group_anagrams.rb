@@ -48,7 +48,7 @@ def group_anagrams(strs)
       hash[str_sorted] = [str]
     end
   end
-  p hash
+  
   hash.values
 end
 
