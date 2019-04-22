@@ -29,3 +29,18 @@ end
 
 # p is_palindrome?('madanm')
 p palindromic_substring('madammm')
+
+def increasing_triplet(nums)
+  a = b = Float::INFINITY
+  nums.each do |n|
+    a = [a, n].min
+    b = [b, n].min if n > a
+    return true if n > b
+  end
+  false
+end
+
+# [2, -3, 2, 4, 5]
+n = 5
+a = 2
+b = 4
