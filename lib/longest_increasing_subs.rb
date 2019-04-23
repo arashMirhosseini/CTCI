@@ -28,6 +28,21 @@ def lis(nums, prev, curr)
 
   [taken, not_taken].max
 end
+
+def length_of_lis1(nums)
+  dp = Array.new(nums.size){1}
+  max = 0
+  1.upto(nums.size-1) do |i|
+    0.upto(i-1) do |j|
+      if nums[i] > nums[j]
+        dp[i] = [dp[i], dp[j]+1].max
+      end
+    end
+    max = [max, dp[i]].max
+  end
+  max
+end
+
 # arr = [0,1,2,3]
 def bsearch(arr, target)
   # mid = (end1 - start + 1) / 2
@@ -47,20 +62,6 @@ def bsearch(arr, target)
   
 end
 
-# // initially called with low = 0, high = N-1
-#   BinarySearch(A[0..N-1], value, low, high) {
-#       // invariants: value > A[i] for all i < low
-#                      value < A[i] for all i > high
-#       if (high < low)
-#           return not_found // value would be inserted at index "low"
-#       mid = (low + high) / 2
-#       if (A[mid] > value)
-#           return BinarySearch(A, value, low, mid-1)
-#       else if (A[mid] < value)
-#           return BinarySearch(A, value, mid+1, high)
-#       else
-#           return mid
-#   }
 
 def binary_search(arr, value, low, high)
   if high < low
@@ -77,13 +78,6 @@ def binary_search(arr, value, low, high)
   end
   
 end
-# nums = [10,9,101,18]
-# p length_of_lis(nums)
-arr = [1,3,4,5,6,7]
-p bsearch(arr, 4)
-# mid = 3
-# [1,3,4]
-# bsearch(arr, 0, 2, 4)
-# mid = 1
-# bsearch(arr, 2, 2, 4)
-# p binary_search(arr, 4, 0, 5)
+
+nums = [10,9,2,5,3,7,101,18]
+p length_of_lis1(nums)
