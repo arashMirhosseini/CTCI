@@ -40,6 +40,7 @@ def length_of_lis1(nums)
     end
     max = [max, dp[i]].max
   end
+  # p dp
   max
 end
 
