@@ -7,9 +7,9 @@
 
 def subsets(nums)
   list = []
-  nums.sort!
+  # nums.sort!
   backtrack(list, Array.new, nums, 0)
-  p list.size
+  # p list.size
   list
 end
 
@@ -23,7 +23,8 @@ end
 # }
 
 def backtrack(list, temp_list, nums, start)
-  list << Array.new(temp_list)
+  list << temp_list.dup
+  p list
   for i in start...nums.length do 
     temp_list << nums[i]
     backtrack(list, temp_list, nums, i + 1)
@@ -31,5 +32,21 @@ def backtrack(list, temp_list, nums, start)
   end
 end
 
-nums = [1,2,3,4]
-p subsets(nums)
+def subsets1(nums)
+  return [[]] if nums.empty?
+  subsets = subsets(nums[1..-1])
+  res = []
+  subsets.each do |subset|
+    res << subset
+    res << (subset.dup << nums[0])
+  end
+  res
+end
+
+nums = [1,2,3]
+# backtrack([], temp, nums, 0)
+# list = [[temp]]
+# i = 0 
+# temp << nums[0] --> list [[1]]
+# [[1]] 
+subsets(nums)
