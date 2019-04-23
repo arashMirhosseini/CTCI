@@ -81,4 +81,4 @@ def binary_search(arr, value, low, high)
 end
 
 nums = [10,9,2,5,3,7,101,18]
-p length_of_lis1(nums)
+# p length_of_lis1(nums)
