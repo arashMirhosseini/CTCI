@@ -1,23 +1,11 @@
-# rebuild twitter 
-# Database 
-# tables: users, posts, comments, 
-
-# users (id, username, pass_encr, session_token)
-# posts (id, user_id, body, retweet)
-# likes (id, user_id, post_id) unique on user_id and post_id
-# comments (id, user_id, post_id, body)
-
-# Model
-# controller: post, get, update, delete
-# @params
-def add
-  user = Comment.new(params[user_id], params[post_id], params[body])
-  
+class Dog
+  attr-accessor :name, :color, :age
+  def initialize(name, color, age)
+    @name = name
+    @color = color 
+    @age = age
+  end
 end
 
-def params
-  
-end
-http://localhost.com/posts/12/comments/new
-
-# forms 
+dog1 = Dog.new('tommy', 'brown', 3)
+dog2 = Dog.new('foxy', 'white', 2)

@@ -26,7 +26,7 @@ end
 
 # @param {TreeNode} root
 # @return {Integer[][]}
-def zigzag_level_order(root)
+def zigzag_level_order1(root)
   list = [[]]
   level_order(root, list)
   list
@@ -63,6 +63,32 @@ end
 #   /       \
 #  4         5
 # output: [[1], [3, 2], [4, 5]]
+
+def zigzag_level_order(root)
+  stack1 = []
+  stack2  = [] 
+  res = []
+  flag = true
+  stack1.push(root)
+  while !stack1.empty?
+    n = stack1.pop
+    res << n.val if n
+    if flag
+      stack2.push(n.right) if n.right
+      stack2.push(n.left) if n.left
+    else
+      stack2.push(n.left) if n.left
+      stack2.push(n.right) if n.right
+    end
+    if stack1.empty?
+      temp = stack2
+      stack2 = stack1
+      stack1 = temp
+      flag = !flag
+    end
+  end
+  res
+end
 
 tree = TreeNode.new(3)
 tree.left = TreeNode.new(9)
