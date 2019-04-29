@@ -21,65 +21,60 @@
 # 00011
 # Output: 3
 
-# grid = [["1","1","1","1","0"],
-#         ["1","1","0","1","0"],
-#         ["1","1","0","0","0"],
-#         ["0","0","0","0","0"]
-# ]
+grid = [["1","1","1","1","0"],
+        ["1","1","0","1","0"],
+        ["1","1","0","0","0"],
+        ["0","0","0","0","0"]
+]
 
 # grid = [['1','1','0','0','0'],
 #         ['1','1','0','0','0'],
 #         ['0','0','1','0','0'],
 #         ['0','0','0','1','1']
 # ]
-grid  = [["1","1","1"],
-         ["0","1","0"],
-         ["1","1","1"]
-]
+# grid  = [["1","1","1"],
+#          ["0","1","0"],
+#          ["1","1","1"]
+# ]
 
 # @param {Character[][]} grid
 # @return {Integer}
 def num_islands(grid)
   n, m = [grid.size, grid[0].size]
+  
+  visited = Array.new(n){Array.new(m){false}}
   count = 0
-  hash = {}
+
   for i in 0...n do 
     for j in 0...m do 
-      if grid[i][j] == '1'
-        hash[[i, j]] = true
-        if !any_neighbor_visited?(i, j, hash, grid)
-          # p hash
-          # p [i,j]
-          count += 1 
-        else
-          # p 'yes'
-        end
+      if is_valid?(i, j, grid, visited)
+        visited[i][j] = true
+        count += 1
+        visited = dfs(i, j, grid, visited)
       end
     end
   end
   count
 end
 
-def any_neighbor_visited?(i, j, hash, grid)
+def dfs(i, j, grid, visited)
   n, m = [grid.size, grid[0].size]
   r_offsets = [-1, 0, 0, 1]
   c_offsets = [0, -1, 1, 0]
-  for k in 0..3 do 
-    r = r_offsets[k]
-    c = c_offsets[k]
-    if valid?(i + r, j + c, n, m)
-      neighbor = grid[i + r][j + c]
-      if neighbor == '1' && hash.include?([i + r, j + c])
-        # p [i + r_offsets[k], j + c_offsets[k]]
-        return true
-      end
+  for k in 0...4 do 
+    r = i + r_offsets[k]
+    c = j + c_offsets[k]
+    if is_valid?(r, c, grid, visited)
+      visited[r][c] = true
+      dfs(r, c, grid, visited)
     end
   end
-  false
+  visited
 end
 
-def valid?(i, j, n, m)
-  i >= 0 && i <= n-1 && j >= 0 && j <= m - 1
+def is_valid?(i, j, grid, visited)
+  n, m = [grid.size, grid[0].size]
+  i >= 0 && i < n && j >= 0 && j < m && grid[i][j] == '1' && !visited[i][j]
 end
 
 # hash = {}
