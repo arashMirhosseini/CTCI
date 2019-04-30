@@ -24,8 +24,14 @@ def find_grants_cap(grantsArray, newBudget)
 end
 
 
-grantsArray = [2,100,50,120,167] 
-newBudget = 400
+# grantsArray = [2,100,50,120,167] 
+# newBudget = 400
 # Expected output:
-# 128
+# 128.0
+
+grantsArray = [21,100,50,120,130,110]
+newBudget = 140
+# Expected:
+# 23.8
+
 p find_grants_cap(grantsArray, newBudget)

@@ -15,9 +15,6 @@
 #   [-1, -1, 2]
 # ]
 require 'set'
-def three_sum(nums)
-  
-end
 
 def two_sum(nums, target)
   seen = Set.new
@@ -36,4 +33,26 @@ def two_sum(nums, target)
   result
 end
 
-p two_sum([-1, 0, 1, 2, -1 ,4], 0)
+def three_sum(nums)
+  nums.sort!
+  res = []
+  for i in 0...nums.size-2 do 
+    next if i > 0 && nums[i] == nums[i-1]
+    puts "i: #{i}"
+    for j in i+1...nums.size-1 do 
+      next if j > i+1 && nums[j] == nums[j-1]
+      puts "j: #{j}"
+      for k in j+1...nums.size do 
+        next if k > j+1 && nums[k] == nums[k-1]
+        puts "k: #{k}"
+        if nums[i] + nums[j] + nums[k] == 0
+          res << [nums[i], nums[j], nums[k]]
+        end
+      end
+    end
+  end
+  res
+end
+
+nums = [-1, 0, 1, 2, -1, -4]
+p three_sum(nums)
