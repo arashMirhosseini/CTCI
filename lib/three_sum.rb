@@ -33,8 +33,10 @@ def two_sum(nums, target)
   result
 end
 
+
 def three_sum(nums)
   nums.sort!
+
   res = []
   for i in 0...nums.size-2 do 
     next if i > 0 && nums[i] == nums[i-1]
