@@ -8,10 +8,28 @@
 
 # Analyze the time and space complexities of your solution.
 
-# input:  arr = [1, 4, 5, 2, 3, 7, 8, 6, 10, 9], k = 2
+# input:  
+arr = [1, 4, 5, 2, 3, 7, 8, 6, 10, 9] 
+k = 2
 
 # output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 def sort_k_messed_array(arr, k)
-  
+  insersion_sort(arr)
 end
+
+def insersion_sort(arr)
+  i = 1
+  while i < arr.size
+    j = i
+    while j >= 0 && arr[j] < arr[j-1]
+      arr[j], arr[j-1] = arr[j-1], arr[j]
+      j -= 1
+    end
+    i += 1
+  end
+  p arr
+end
+# p sort_k_messed_array(arr, k)
+insersion_sort(arr)
+# p arr
