@@ -46,3 +46,44 @@ class Heap
   end
 
 end
+
+def build_heap(arr)
+  n = arr.size
+  ((n - 1)/2).downto(0) do |i|
+    max_heapify(arr, n, i)
+  end
+  arr
+end
+
+def max_heapify(nums, size, idx)
+  largest = idx
+  left = 2 * idx + 1
+  right = 2 * idx + 2
+  
+  if left < size && nums[largest] < nums[left]
+    largest = left 
+  end
+  if right < size && nums[largest] < nums[right]
+    largest = right
+  end
+  if idx != largest 
+    nums[idx], nums[largest] = nums[largest], nums[idx]
+    max_heapify(nums, size, largest)
+  end
+end
+
+def extract_max(heap)
+  while !heap.empty?
+    max = heap.shift
+    p max
+    n = heap.size
+    max_heapify(heap, n-1, 0)
+  end
+    heap
+end
+
+arr1 = [14, 7, 3, 8, 1]
+# arr = [3, 19, 1, 14, 8, 7]
+arr = [3,2,1,5,6,4]
+heap = build_heap(arr)
+p extract_max(heap)
