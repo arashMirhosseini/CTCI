@@ -52,7 +52,7 @@ def build_heap(arr)
   ((n - 1)/2).downto(0) do |i|
     max_heapify(arr, n, i)
   end
-  arr
+  # arr
 end
 
 def max_heapify(nums, size, idx)
@@ -72,18 +72,31 @@ def max_heapify(nums, size, idx)
   end
 end
 
-def extract_max(heap)
-  while !heap.empty?
-    max = heap.shift
-    p max
-    n = heap.size
-    max_heapify(heap, n-1, 0)
+def extract_max(arr, k)
+  build_heap(arr)
+  p arr
+  res = []
+  k.times do 
+    arr[0], arr[-1] = arr[-1], arr[0]
+    res << arr.pop
+    max_heapify(arr, arr.size, 0)
   end
-    heap
+  p arr
+  return res
 end
 
-arr1 = [14, 7, 3, 8, 1]
+def heap_sort(arr)
+  build_heap(arr)
+  (arr.size-1).downto(1) do |i|
+    arr[i], arr[0] = arr[0], arr[i]
+    max_heapify(arr, i, 0)
+  end
+  arr
+end
+
+# arr1 = [14, 7, 3, 8, 1]
 # arr = [3, 19, 1, 14, 8, 7]
 arr = [3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6]
-heap = build_heap(arr)
-p extract_max(heap)
+# p heap = build_heap(arr1)
+p extract_max(arr, 2)
+# p heap_sort(arr)
