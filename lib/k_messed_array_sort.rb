@@ -10,21 +10,51 @@
 
 # input:  
 arr = [1, 4, 5, 2, 3, 7, 8, 6, 10, 9] 
-k = 2
+k = 3
 
 # output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 def sort_k_messed_array(arr, k)
-  insersion_sort(arr)
+  heap = build_heap(arr[0...k])
+  i = k 
+  res = []
+  while i < arr.size
+    res << add_and_extract_heap(heap, arr[i])
+    i += 1
+  end
+  p heap
+  p res
 end
 
+# log(n)
+def extract(heap)
+  heap[0], heap[-1] = heap[-1], heap[0]
+  res = heap.pop
+  min_heapify(heap, heap.size, 0)
+  res
+end
+
+# log(n)
+def insert(heap, ele)
+  n = heap.size + 1
+  heap << ele
+  i = heap.size - 1
+  while i < n && i > 0 && heap[(i-1)/2] > heap[i]
+    heap[(i-1)/2], heap[i] = heap[i], heap[(i-1)/2]
+    i = (i-1)/2
+  end
+end
+
+# O(n)
 def build_heap(arr)
   n = arr.size
   ((n-1)/2).downto(0) do |i|
     min_heapify(arr, n, i)
   end
+  arr
 end
 
+# O(log n)
 def min_heapify(arr, size, idx)
   smallest = idx
   left = idx * 2 + 2
@@ -40,7 +70,7 @@ def min_heapify(arr, size, idx)
   
   if smallest != idx
     arr[smallest], arr[idx] = arr[idx], arr[smallest]
-    heapify(arr, size, smallest)
+    min_heapify(arr, size, smallest)
   end
   
 end
@@ -61,10 +91,10 @@ def insersion_sort(arr)
   end
   arr
 end
-# p sort_k_messed_array(arr, k)
+sort_k_messed_array(arr, k)
 # insersion_sort(arr)
 # p arr
-nums = [2, 0, 1]
+# nums = [2, 0, 1]
 # nums = [2,0,2,1,1,0]
 # p insersion_sort(nums)
 
