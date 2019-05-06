@@ -18,6 +18,33 @@ def sort_k_messed_array(arr, k)
   insersion_sort(arr)
 end
 
+def build_heap(arr)
+  n = arr.size
+  ((n-1)/2).downto(0) do |i|
+    min_heapify(arr, n, i)
+  end
+end
+
+def min_heapify(arr, size, idx)
+  smallest = idx
+  left = idx * 2 + 2
+  right = left + 1
+  
+  if left < size && arr[left] < arr[smallest]
+    smallest = left
+  end
+  
+  if right < size && arr[right] < arr[smallest]
+    smallest = right
+  end
+  
+  if smallest != idx
+    arr[smallest], arr[idx] = arr[idx], arr[smallest]
+    heapify(arr, size, smallest)
+  end
+  
+end
+
 def insersion_sort(arr)
   i = 1
   while i < arr.size
@@ -41,17 +68,3 @@ nums = [2, 0, 1]
 # nums = [2,0,2,1,1,0]
 # p insersion_sort(nums)
 
-require "rubygems"
-require "algorithms"
-
-include Containers
-
-input = [1,1,1,2,2,3] 
-k = 2
-
-def heap_most_frequent(arr, num = 1)
-  max_heap = MaxHeap.new(arr.group_by(&:itself).map{|n,ns| [ns.count,n]})
-  (1..num).each_with_object([]) { |i, result| result << max_heap.pop[1]}
-end
-
-heap_most_frequent(nums)
