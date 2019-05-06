@@ -15,14 +15,16 @@ k = 3
 # output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 def sort_k_messed_array(arr, k)
-  heap = build_heap(arr[0...k])
+  heap = build_heap(arr[0..k])
   n = arr.size
   res = []
-  i = k
-  
+  i = k + 1
+  p "heap before #{heap}"
   while !heap.empty?
     res << extract(heap)
+    p "after extract: #{heap}"
     insert(heap, arr[i]) if i < n
+    p "after insert: #{heap}"
     i += 1
   end
   p res
@@ -97,7 +99,7 @@ def insersion_sort(arr)
   end
   arr
 end
-sort_k_messed_array(arr, k)
+sort_k_messed_array([1,0,3,2], 1)
 # insersion_sort(arr)
 # p arr
 # nums = [2, 0, 1]
