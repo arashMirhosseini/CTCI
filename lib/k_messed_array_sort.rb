@@ -16,14 +16,17 @@ k = 3
 
 def sort_k_messed_array(arr, k)
   heap = build_heap(arr[0...k])
-  i = k 
+  n = arr.size
   res = []
-  while i < arr.size
-    res << add_and_extract_heap(heap, arr[i])
+  i = k
+  
+  while !heap.empty?
+    res << extract(heap)
+    insert(heap, arr[i]) if i < n
     i += 1
   end
-  p heap
   p res
+
 end
 
 # log(n)
@@ -31,6 +34,7 @@ def extract(heap)
   heap[0], heap[-1] = heap[-1], heap[0]
   res = heap.pop
   min_heapify(heap, heap.size, 0)
+
   res
 end
 
@@ -43,7 +47,9 @@ def insert(heap, ele)
     heap[(i-1)/2], heap[i] = heap[i], heap[(i-1)/2]
     i = (i-1)/2
   end
+  
 end
+# insert([4, 5], 7)
 
 # O(n)
 def build_heap(arr)
@@ -57,7 +63,7 @@ end
 # O(log n)
 def min_heapify(arr, size, idx)
   smallest = idx
-  left = idx * 2 + 2
+  left = idx * 2 + 1
   right = left + 1
   
   if left < size && arr[left] < arr[smallest]
