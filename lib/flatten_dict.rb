@@ -32,3 +32,17 @@ dict = {"Key1" => "1",
 #         }
 
 p flatten_dictionary(dict)
+
+def length_of_longest_substring(s)
+  return 0 if s.length < 1
+  left, res = [0, 0]
+  hash = {}
+  s.each_char.with_index do |char, idx|
+    if hash.key? char 
+      left = [left, hash[char]+1].max
+    end
+    hash[char] = idx
+    res = [idx - left + 1, res].max
+  end
+  res
+end
