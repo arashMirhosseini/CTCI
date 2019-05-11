@@ -9,7 +9,7 @@
 # @param {String} s
 # @return {String}
 def longest_palindrome(s)
-  
+
   return s if s.length < 2
   n = s.size
   palindromic = Array.new(n){Array.new(n){false}}
@@ -28,4 +28,5 @@ def longest_palindrome(s)
 end
 
 longest_palindrome('abosobda')
+
 
