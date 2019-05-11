@@ -1,3 +1,21 @@
+# Given n pairs of parentheses, write a function 
+# to generate all combinations of well-formed parentheses.
+
+# For example, given n = 3, a solution set is:
+
+# [
+#   "((()))",
+#   "(()())",
+#   "(())()",
+#   "()(())",
+#   "()()()"
+# ]
+
+# @param {Integer} n
+# @return {String[]}
+def generate_parenthesis(n)
+end
+
 def letter_combinations(digits)
   return [] if digits.length < 1
   maps = { '2' => 'abc', '3' => 'def', '4' => 'ghi',
