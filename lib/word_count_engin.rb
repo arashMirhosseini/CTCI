@@ -48,9 +48,16 @@ def word_count_engine(document)
     if i != j
       first = i
       last = j 
-      p res[first..last].sort! { |a, b| orders[a.first] <=> orders[b.first] }
+      temp = res[first..last].sort! { |a, b| orders[a.first] <=> orders[b.first] }
+      res[first..last] = temp
+      i += j + 1
     end
     i += 1
+   
+  end
+  res.map! do |arr|
+    s = arr.last.to_s
+    arr = [arr[0], s]
   end
   res
 end
@@ -58,8 +65,8 @@ end
 def document_to_array(document)
   words = document.split(' ')
   words.map! do |word|
-    word = word.downcase
-    word = word.split(/[^a-z]/).join
+    word.downcase!
+    word.split(/[^a-z]/).join
   end
   words
 end
