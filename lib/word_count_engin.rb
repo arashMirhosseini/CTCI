@@ -31,7 +31,7 @@ def word_count_engine(document)
   counts = Hash.new(0)
   words.each { |word| counts[word] += 1 }
   res = counts.sort { |a, b| b.last <=> a.last }
-
+  p counts
   orders = Hash.new
   words.size.times do |i|
     if !orders.include? words[i]
@@ -48,7 +48,7 @@ def word_count_engine(document)
     if i != j
       first = i
       last = j 
-      temp = res[first..last].sort! { |a, b| orders[a.first] <=> orders[b.first] }
+      temp = res[first..last].sort { |a, b| orders[a.first] <=> orders[b.first] }
       res[first..last] = temp
       i += j + 1
     end
@@ -70,7 +70,23 @@ def document_to_array(document)
   end
   words
 end
-
+def partition(nums, low, high)
+  rand_idx = rand(high+1)
+  nums[rand_idx], nums[high] = nums[high], nums[rand_idx]
+  
+  pivot = nums[high]
+  i = low - 1
+  j = i + 1
+  while j < high
+    if nums[j] < pivot
+      i += 1
+      nums[j], nums[i] = nums[i], nums[j]
+    end
+    j += 1
+  end
+  nums[high], nums[i+1] = nums[i+1], nums[high]
+  i + 1
+end
 p word_count_engine(document)
 # p document_to_array(document)
 

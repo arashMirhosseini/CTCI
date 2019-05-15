@@ -1,5 +1,16 @@
 # implement heap 
+require 'rubygems'
+require 'algorithms'
+include Containers
 
+
+
+def say_hello
+  max_heap = MaxHeap.new([1, 2, 3, 4])
+  max_heap.pop
+  max_heap.pop
+end
+p say_hello
 class Heap
   def initialize(arr)
     @arr = arr
@@ -100,3 +111,39 @@ arr = [3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6]
 # p heap = build_heap(arr1)
 p extract_max(arr, 2)
 # p heap_sort(arr)
+
+def num_islands(grid)
+  return 0 if grid.size < 1
+  n, m = [grid.size, grid[0].size]
+  
+  count = 0
+
+  for i in 0...n do 
+    for j in 0...m do 
+      if is_valid?(i, j, grid)
+        count += 1
+        dfs(i, j, grid)
+      end
+    end
+  end
+  count
+end
+
+def dfs(i, j, grid)
+  n, m = [grid.size, grid[0].size]
+  r_offsets = [-1, 0, 0, 1]
+  c_offsets = [0, -1, 1, 0]
+  for k in 0...4 do 
+    r = i + r_offsets[k]
+    c = j + c_offsets[k]
+    if is_valid?(r, c, grid)
+      grid[r][c] = '0'
+      dfs(r, c, grid)
+    end
+  end
+end
+
+def is_valid?(i, j, grid)
+  n, m = [grid.size, grid[0].size]
+  i >= 0 && i < n && j >= 0 && j < m && grid[i][j] == '1' 
+end
