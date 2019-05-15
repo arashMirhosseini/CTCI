@@ -20,7 +20,7 @@ def letter_combinations(digits)
   return [] if digits.length < 1
   maps = { '2' => 'abc', '3' => 'def', '4' => 'ghi',
             '5' => 'jkl', '6' => 'mno', '7' => 'pqrs',
-            '8' => 'tuv', '9' => 'wxyz'}
+            '8' => 'tuv', '9' => 'wxyz' }
   res = []
   backtrack(maps, '', digits, res)
   res
@@ -41,3 +41,30 @@ def backtrack(maps, combination, digits, arr)
  
 end
 
+def partition(arr, low, high)
+  pivot = arr[high]
+  i = low - 1
+  j = low
+  while j < high
+    if arr[j] < pivot
+      i += 1
+      arr[i], arr[j] = arr[j], arr[i]
+    end
+    j += 1
+  end
+  arr[i+1], arr[high] = arr[high], arr[i+1]
+  i + 1
+end
+
+def quick_sort(arr, low, high)
+  if low < high 
+    q = partition(arr, low, high)
+    quick_sort(arr, low, q - 1)
+    quick_sort(arr, q + 1, high)
+  end
+end
+
+# p partition([2,8,7,1,3,5,6,4], 0, 7)
+arr = [2,8,7,1,3,5,6,4]
+quick_sort(arr, 0, 7)
+p arr
