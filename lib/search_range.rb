@@ -19,18 +19,20 @@ def search_range(nums, target)
   end
   return res if nums[i] != target 
   res[0] = i
-
+  j = nums.size - 1
   # find the right side
   while i < j
-    mid = (i + j) / 2 
+    mid = (i + j) / 2 + 1
     if nums[mid] == target 
       i = mid
     elsif nums[mid] < target
       i = mid
     else
       j = mid - 1
+    end
   end
   res[1] = j
   res
 end
 
+p search_range([5,7,8,8,10], 8)
