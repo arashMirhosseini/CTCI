@@ -2,7 +2,8 @@
 
 # Example:
 
-# Input: S = "ADOBECODEBANC", T = "ABC"
+s = "ADOBECODEBANC"
+t = "ABC"
 # Output: "BANC"
 
 def min_window(s, t)
@@ -11,22 +12,27 @@ def min_window(s, t)
   res = []
   hash = Hash.new(0)
   t.each_char { |c| hash[c] += 1 }
-
+  
   while right < s.size
-    if hash.include? s[right] && hash[s[right]] > 0
-      hash[s[right]] -= 1
-      counter -= 1
-      right += 1
+    if hash.include? s[right]
+      counter -= 1 if hash[s[right]] > 0
+      hash[s[right]] -= 1 
+      
     end
-
+    right += 1
     while counter == 0
-      res << s[left..right]
+      res << s[left...right]
       if hash.include? s[left]
+        counter += 1 if hash[s[left]] >= 0
+      
         hash[s[left]] += 1
-        counter += 1 if hash[s[left]] > 0
       end
+        
       left += 1
     end
     
   end
+  res
 end
+
+p min_window(s, t)
