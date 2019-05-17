@@ -12,7 +12,7 @@ def min_window(s, t)
   res = []
   hash = Hash.new(0)
   t.each_char { |c| hash[c] += 1 }
-  
+
   while right < s.size
     if hash.include? s[right]
       counter -= 1 if hash[s[right]] > 0
@@ -35,4 +35,32 @@ def min_window(s, t)
   res
 end
 
-p min_window(s, t)
+# max sliding window
+# Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window.
+require 'rubygems'
+require 'algorithms'
+include Containers
+# @param {Integer[]} nums
+# @param {Integer} k
+# @return {Integer[]}
+def max_sliding_window(nums, k)
+  return [] if nums.empty?
+  
+  window = nums[0...k]
+  max = window.max
+  res = [max]
+  idx = k
+  while idx < nums.size
+    if nums[idx] > max
+      max = nums[idx]
+    end
+    res << max
+    idx += 1
+  end
+  res
+end
+
+nums = [1,3,-1,-3,5,3,6,7]
+k1 = 3
+# Output: [3,3,5,5,6,7] 
+p max_sliding_window(nums, k1)
