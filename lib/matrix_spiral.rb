@@ -23,19 +23,21 @@ def spiral_copy(matrix)
     p "i: #{i}, j: #{j}"
     res += matrix[i][j..m-1]
     p res
-    if (n-1 != i)
+    if (n-1 != i) 
       (i+1).upto(n-1) do |k|
         res << matrix[k][m-1]
       end
       p res
-      res += matrix[n-1][j..m-2].reverse
+      res += matrix[n-1][j..m-2].reverse if j != m-1
       p res
       temp = []
-      (i+1).upto(n-2) do |k|
-        temp << matrix[k][j]
-        
+      if j != m-1
+        (i+1).upto(n-2) do |k|
+          temp << matrix[k][j]
+          
+        end
+        res += temp.reverse
       end
-      res += temp.reverse
       p res
     end
     
@@ -61,4 +63,5 @@ m =[
 ]
 
 m1 = [[1,2,3],[4,5,6],[7,8,9]]
-p spiral_copy(m)
+m2 = [[3],[2]]
+spiral_copy(matrix)
