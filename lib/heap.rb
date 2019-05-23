@@ -109,8 +109,8 @@ end
 # arr = [3, 19, 1, 14, 8, 7]
 arr = [3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6]
 # p heap = build_heap(arr1)
-p extract_max(arr, 2)
-# p heap_sort(arr)
+# p extract_max(arr, 2)
+p heap_sort(arr)
 
 def num_islands(grid)
   return 0 if grid.size < 1

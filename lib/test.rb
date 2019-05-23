@@ -21,4 +21,17 @@ def merge(nums1, nums2)
   end
 end
 
-p merge(nums1, nums2)
+def merge_sort(arr, l, r)
+  if r > l
+    mid = (l + r) / 2
+    p mid
+    left = merge_sort(arr, l, mid)
+    
+    right = merge_sort(arr, mid+1, r)
+    merge(left, right)
+  end
+
+end
+
+# p merge(nums1, nums2)
+p merge_sort([2,3,4,0,1], 0, 4)
